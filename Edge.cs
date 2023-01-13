@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 namespace TriminoV3
 {
     enum Direction {Left, Right, Down}
+
     public struct Edge
     {
         public string Value;
