@@ -7,13 +7,16 @@ using System.Threading.Tasks;
 
 namespace TriminoV3
 {
-    enum Direction {Left, Right, Down}
+    public enum Direction {Left, Right, Down}
     public struct Edge
     {
-        public string value;
-        readonly Direction vector;
+        readonly string value;
+        public readonly Direction vector;
+        readonly bool isPositive;
+
         public Edge(string  value1,string value2,bool isPositiveTrimino, int numberEdge)
         {
+            isPositive = isPositiveTrimino;
             if(isPositiveTrimino)
             {
                 switch(numberEdge)
@@ -51,9 +54,9 @@ namespace TriminoV3
                 }
             }
         }
-        public bool CompareForEquals(Edge otherEdge)
+        public bool CompareForAssing(Edge otherEdge, Direction vectorToAssing)
         {
-            if (otherEdge.value == value && otherEdge.vector == vector) return true;
+            if (otherEdge.value == value && (otherEdge.vector == vector)&&(vector==vectorToAssing)&&otherEdge.isPositive!=isPositive) return true;
 
             return false;
         }
