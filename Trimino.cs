@@ -13,22 +13,30 @@ namespace TriminoV3
         private int[] points;
         internal List<Edge> edges = new List<Edge>();
         public bool charge;
-        private int[] orderEdge = new int[] { 0, 1, 2 };
+        int krenPoint;
 
         public Trimino(int point1, int point2, int point3, bool charge = true) => points = new int[] { point1, point2, point3 } ;
       
         public void RollLeft(int count = 1)
         {
-            while (count-- > 0)
-            {
-                orderEdge = new int[] { orderEdge[1], orderEdge[2], orderEdge[0] };
-            }
+            for(int i = 0; i < count;i++) krenPoint++;
         }
         public void RollRight() =>RollLeft(2);
 
-        public void PrepareToPlace(ref bool isPositive)
+        public void PrepareToPlace(bool isPositive)// isPositive - it's charge of trimino's to assing
         {
-            if (isPositive) charge = false; else charge = true;
+            krenPoint = krenPoint % 3;
+            int _firstIndex = krenPoint;
+            int _secondIndex = krenPoint+1;
+            if (isPositive) _firstIndex+= 2;
+            for(int i = 0;i<3;i++,_firstIndex++,_secondIndex++)
+            {
+                Edge createdEdge = new Edge(points[_firstIndex%3].ToString(), points[_secondIndex%3].ToString(), (Direction)i,isPositive);
+                edges.Add(createdEdge);
+            }
+
+
+            /* if (isPositive) charge = false; else charge = true;
             foreach(var order in orderEdge)
             {
                 string _value1, _value2;
@@ -45,6 +53,8 @@ namespace TriminoV3
                 Edge _edgeToAdd = new Edge(_value1, _value2, charge, order);
                 edges.Add(_edgeToAdd);
             }
+            */
+
         } 
     }
 }

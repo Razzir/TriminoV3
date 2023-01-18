@@ -7,14 +7,22 @@ using System.Threading.Tasks;
 
 namespace TriminoV3
 {
-    public enum Direction {Left, Right, Down}
+    public enum Direction {Right, Down, Left }
     public struct Edge
     {
         public readonly string value;
         public readonly Direction vector;
         public readonly bool isPositive;
 
-        public Edge(string  value1,string value2,bool isPositiveTrimino, int numberEdge)
+        public Edge (string value1, string value2, Direction addedVector, bool isPositive)
+        {
+            value = (value1 + value2);
+            vector = addedVector;
+            this.isPositive = isPositive;
+        }
+
+
+       /* public Edge(string  value1,string value2,bool isPositiveTrimino, int numberEdge)
         {
             isPositive = isPositiveTrimino;
             if(isPositiveTrimino)
@@ -53,8 +61,10 @@ namespace TriminoV3
                         break;
                 }
             }
+
             
         }
+       */
         
     }
 }

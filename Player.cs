@@ -27,7 +27,7 @@ namespace TriminoV3
             foreach(PlaceDataContainer container in triminoNerbyPosition)
             {
                 bool chargeOfContainer = container.encapsulatedTrimino.charge;
-                selectedTrimino.PrepareToPlace(ref chargeOfContainer);
+                selectedTrimino.PrepareToPlace(chargeOfContainer);
                 bool result = TryToAssing(selectedTrimino, container.encapsulatedTrimino, container.encapsulatedDirection);
                 if (result) return true;
             }
